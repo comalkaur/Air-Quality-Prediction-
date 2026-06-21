@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Air Quality Prediction System</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+<span class="leaf">🍃</span>
+<h1>Air Quality Prediction System</h1>
+</div>
+
+<nav>
+<a class="active">Dashboard</a>
+<a>Historical Data</a>
+<a>About</a>
+</nav>
+
+</header>
+
+
+<main class="dashboard">
+
+<!-- LEFT FORM CARD -->
+
+<section class="form-card">
+
+<h2>Predict Air Quality</h2>
+
+<form action="/predict" method="POST">
+
+<div class="grid">
+
+<div class="field">
+<label>PM2.5 (µg/m³)</label>
+<input type="number" name="pm25" required>
+</div>
+
+<div class="field">
+<label>PM10 (µg/m³)</label>
+<input type="number" name="pm10" required>
+</div>
+
+<div class="field">
+<label>NO2 (ppb)</label>
+<input type="number" name="no2" required>
+</div>
+
+<div class="field">
+<label>SO2 (ppb)</label>
+<input type="number" name="so2" required>
+</div>
+
+<div class="field">
+<label>CO (ppm)</label>
+<input type="number" name="co" required>
+</div>
+
+<div class="field">
+<label>O3 (ppb)</label>
+<input type="number" name="o3" required>
+</div>
+
+<div class="field">
+<label>Temperature (°C)</label>
+<input type="number" name="temperature" required>
+</div>
+
+<div class="field">
+<label>Humidity (%)</label>
+<input type="number" name="humidity" required>
+</div>
+
+<div class="field">
+<label>Wind Speed (km/h)</label>
+<input type="number" name="wind_speed" required>
+</div>
+
+<div class="field">
+<label>Pressure (hPa)</label>           
+<input type="number" name="pressure" required>
+</div>
+
+<button class="predict-btn">
+Predict Air Quality →
+</button>
+
+</form>
+
+</section>
+
+
+<!-- RESULT CARD -->
+
+<section class="result-card">
+
+<h3>Predicted AQI</h3>
+
+<div class="aqi-value">
+{{ prediction if prediction else "85" }}
+</div>
+
+<h4>AQI Category</h4>
+
+<div class="aqi-badge">
+
+{{ category if category else "Moderate" }}
+
+</div>
+
+
+<h4>AQI Indicator</h4>
+
+<div class="aqi-scale">
+
+<div class="scale"></div>
+
+<div class="labels">
+<span>Good</span>
+<span>Moderate</span>
+<span>Unhealthy</span>
+<span>Very Unhealthy</span>
+<span>Hazardous</span>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</body>
+</html>
